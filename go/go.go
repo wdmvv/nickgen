@@ -6,11 +6,12 @@ import (
 	"time"
 )
 
+var vowels []rune = []rune{'a', 'e', 'i', 'o', 'u', 'y'}
+var consonants []rune = []rune{'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'z'}
+
 func nickgen() string {
 	rand.Seed(time.Now().UnixNano())
 
-	vowels := [...]rune{'a', 'e', 'i', 'o', 'u', 'y'}
-	consonants := [...]rune{'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'z'}
 	nick := ""
 
 	for i := 0; i < (rand.Intn(5) + 2); i++ {
@@ -22,9 +23,9 @@ func nickgen() string {
 			}
 		} else {
 			for j := 0; j < rand.Intn(3)+1; j++ {
-				
+
 				nick += string(consonants[rand.Intn(20)])
-				
+
 			}
 		}
 	}
@@ -37,7 +38,6 @@ func nickgen() string {
 }
 
 func main() {
-	rand.Seed(time.Now().UnixNano())
 	for i := 0; i < 10; i++ {
 		fmt.Println(nickgen())
 	}
