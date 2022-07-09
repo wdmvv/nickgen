@@ -1,2 +1,2 @@
 # nickgen
-nickgens in various languages
+various nickgens in various languages
