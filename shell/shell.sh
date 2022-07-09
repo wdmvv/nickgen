@@ -1,7 +1,7 @@
 #!/bin/bash
 
-consonants="bcdfghjklmnpqrstvwxyz"
-vowels="aeiou"
+consonants="bcdfghjklmnpqrstvwxz"
+vowels="aeiouy"
 
 function gennick
 {
