@@ -22,17 +22,17 @@ func nickgen() string {
 			}
 		} else {
 			for j := 0; j < rand.Intn(3)+1; j++ {
-
+				
 				nick += string(consonants[rand.Intn(20)])
-
+				
 			}
 		}
 	}
+	
 	for i := 0; i < rand.Intn(4); i++ {
-
 		nick += fmt.Sprint(rand.Intn(10))
-
 	}
+	
 	return nick
 }
 
