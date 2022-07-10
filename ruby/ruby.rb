@@ -6,9 +6,9 @@ count = ARGV[0].to_i unless ARGV.empty?
 
 def generate_nicknames(nick_count)
     nicks = []
-    (0..nick_count).each do
+    (1..nick_count).each do
         nick = ""
-        (0..rand(3..6)).each do
+        (1..rand(3..6)).each do
             nick += CONSONANTS[rand(0..19)] if rand(0..1) == 1
             nick += VOWELS[rand(0..5)] if rand(0..1) == 1
         end
