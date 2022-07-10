@@ -2,19 +2,19 @@
 !#
 
 ;; Define le funny.
-(define vowels "aeiouy")
-(define consonant "bcdfghjklmnpqrstvwxz")
+(define *vowels* "aeiouy")
+(define *consonant* "bcdfghjklmnpqrstvwxz")
 ;; Use the current time as a seed for random state.
-(define random-state (seed->random-state (car (gettimeofday))))
+(define *random-state* (seed->random-state (car (gettimeofday))))
 
 ;; Define a function to get a letter to get a more "functional" feel.
 (define (get-letter)
-  (if (= (random 2 random-state) 0)
-      (array-ref vowels (random 5))
-      (array-ref consonant (random 19))))
+  (if (= (random 2 *random-state*) 0)
+      (array-ref *vowels* (random 5 *random-state*))
+      (array-ref *consonant* (random 19 *random-state*))))
 
 (define (gen-nick)
-  (let ((limit (+ (random 6) 3)))
+  (let ((limit (+ (random 6 *random-state*) 3)))
     (do ((count 0 (1+ count))
          (out "" (string-append out (string (get-letter)))))
         ((= count limit) out))))
