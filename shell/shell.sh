@@ -14,8 +14,7 @@ function gennick
         then
             output+="${consonants:$(($RANDOM % 19)):1}"
         fi
-        if [[ $(($RANDOM % 2)) -eq 0 ]]
-        then
+        else
             output+="${vowels:$(($RANDOM % 5)):1}"
         fi
     done
