@@ -14,10 +14,10 @@ object Nickgen extends App {
 
             for(k <- 3 to Random.nextInt(6) + 3) {
                 if(Random.nextBoolean() == true) {
-                    nick += consonants(Random.nextInt(18))
+                    nick += consonants(Random.nextInt(19))
                 }
                 if(Random.nextBoolean() == true){
-                    nick += vowels(Random.nextInt(4))
+                    nick += vowels(Random.nextInt(5))
                 }
             }
 
