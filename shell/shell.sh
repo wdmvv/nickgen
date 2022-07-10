@@ -13,7 +13,6 @@ function gennick
         if [[ $(($RANDOM % 2)) -eq 0 ]]
         then
             output+="${consonants:$(($RANDOM % 19)):1}"
-        fi
         else
             output+="${vowels:$(($RANDOM % 5)):1}"
         fi
