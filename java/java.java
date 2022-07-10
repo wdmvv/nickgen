@@ -1,6 +1,6 @@
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Nickgen 
+public class java 
 {
     public static void main(String[] args)
     {
