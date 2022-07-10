@@ -24,3 +24,6 @@
   (do ((count 0 (1+ count))
        (output '() (append (list (gen-nick)) output)))
       ((= count n) output)))
+
+;; Get 40 nicks, for standalone execution.
+(get-nnicks 40)
