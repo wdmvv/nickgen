@@ -5,9 +5,9 @@ local count = 10
 if arg ~= nil then count = arg[1] end
 
 function generate_nicknames(count)
-    nicks = {}
+    local nicks = {}
     for i = 1, count, 1 do
-        nick = ""
+        local nick = ""
         for k = 1, math.random(3, 6), 1 do
             if math.random(0, 1) == 1 then
                 nick = nick .. consonants[math.random(1,20)]
