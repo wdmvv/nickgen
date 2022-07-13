@@ -26,4 +26,4 @@
       ((= count n) output)))
 
 ;; Get 40 nicks, for standalone execution.
-(get-nnicks 40)
+(for-each display (get-nnicks 40))
