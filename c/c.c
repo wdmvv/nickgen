@@ -2,10 +2,23 @@
 #include <unistd.h>
 #include <time.h>
 
-char buffer[16]; /* The strings we need not even get over 10 characters. */
+/* Not worth the function definition. */
+#define FLUSH write (1, buffer, fill_ptr)
+/* Always inline. */
+#define IF_FULL fill_ptr > 16438 ? write_wrap (1, buffer, fill_ptr) : 0
+
+char buffer[16448]; /* Must use the CPU cache to buffer the most we can. */
+size_t fill_ptr = 0; /* We must know where the fill pointer is. */
 
 const char* vowels = "aeiouy";
-const char* consonants = "bcdfghgjklmnpqrstvwxz";
+const char* consonants = "bcdfghjklmnpqrstvwxz";
+
+/* Praying GCC inlines this. */
+int __attribute__ ((always_inline))
+write_wrap (int fd, void* buffer, size_t count)
+{
+  write (fd, buffer, count); fill_ptr = 0; 
+}
 
 int gen_nick ()
 {
@@ -13,9 +26,9 @@ int gen_nick ()
   for (int i = 0; i < limit; i++)
     {
       if (random () % 2)
-        buffer[i] = vowels[(random () % 6)];
+        buffer[i + fill_ptr] = vowels[(random () % 6)];
       else
-        buffer[i] = consonants[(random () % 19)];
+        buffer[i + fill_ptr] = consonants[(random () % 19)];
     }
   return limit; /* Length of the generated string. */
 }
@@ -30,10 +43,13 @@ gen_nicks (int count)
       /* Let the fore character of the generated nick be a newline character.
       ** Remember C indexes from 0, so limit is the next character of our
       ** nickname */
-      buffer[limit] = '\n';
-      
-      /* 1 == standard output. */
-      write (1, buffer, limit + 1);
+      buffer[limit + fill_ptr] = '\n';
+
+      /* Increment the buffer fill pointer */
+      fill_ptr += limit + 1;
+
+      /* Write buffer if it is about to overflow. */
+      IF_FULL;
     }
 }
 
@@ -52,5 +68,6 @@ main (void)
 {
   seed_time ();
   gen_nicks (1000);
+  FLUSH;
   return EXIT_SUCCESS;
 }
