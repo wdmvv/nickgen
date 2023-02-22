@@ -4,10 +4,10 @@ CFLAGS = -Wall -O3
 all: c dumbed-down
 
 c:
-	$(CC) c.c -o c
+	$(CC) $(CFLAGS) c.c -o c
 
 dumbed-down:
-	$(CC) dumbed-down.c -o dumbed-down
+	$(CC) $(CFLAGS) dumbed-down.c -o dumbed-down
 
 clean:
 	-rm c
