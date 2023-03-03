@@ -16,5 +16,5 @@ fun generate_nicks(count: Int): List<String> {
 }
 
 fun main(args: Array<String>) {
-   if (args.isNullOrEmpty()) print(generate_nicks(args[0].toInt())) else print(generate_nicks(10))
+   if (!args.isNullOrEmpty()) print(generate_nicks(args[0].toInt())) else print(generate_nicks(10))
 }
